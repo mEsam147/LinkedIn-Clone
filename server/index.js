@@ -18,7 +18,6 @@ app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  // origin: process.env.NODE_ENV === "production" ? "*" : "http://localhost:5173",
   origin: "http://localhost:5173",
   credentials: true,
 };
@@ -34,14 +33,14 @@ app.use("/api/post", postRoute);
 app.use("/api/notification", notificationRoute);
 app.use("/api/connection", connectionRoute);
 
-if (process.env.NODE_ENV === "production") {
-  const clientPath = path.join(__dirname, "/client/dist");
-  app.use(express.static(clientPath));
+// if (process.env.NODE_ENV === "production") {
+//   const clientPath = path.join(__dirname, "/client/dist");
+//   app.use(express.static(clientPath));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(clientPath, "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(clientPath, "index.html"));
+//   });
+// }
 
 app.use("/uploads", express.static("uploads"));
 
